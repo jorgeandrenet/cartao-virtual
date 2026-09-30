@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Marcus Damasceno Advocacia | Cartão Virtual</title>
+  <meta name="description" content="Cartão de visita digital interativo de Marcus Damasceno Advocacia - Especialista em Revalidação de Diploma Médico em Portugal e Europa.">
+  
+  <!-- Open Graph / Meta -->
+  <meta property="og:title" content="Marcus Damasceno Advocacia | Cartão Virtual">
+  <meta property="og:description" content="Revalidação de Diploma Médico em Portugal e Europa. Acesse nossos canais de contato direto.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/logo_transparent.png">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/logo_transparent.png">
+  <link rel="apple-touch-icon" href="assets/logo_transparent.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    :root {
+      --gold-100: #FFF5D0;
+      --gold-200: #F4E297;
+      --gold-300: #E6CA65;
+      --gold-400: #D4AF37;
+      --gold-500: #B8860B;
+      --gold-600: #8C6205;
+      --gold-gradient: linear-gradient(135deg, #FFF0B2 0%, #D4AF37 35%, #B8860B 70%, #F4E297 100%);
+      --gold-gradient-dark: linear-gradient(135deg, #D4AF37 0%, #996515 100%);
+      --gold-shine: linear-gradient(90deg, transparent, rgba(255, 245, 208, 0.4), transparent);
+      
+      --bg-dark-top: #0e0e11;
+      --bg-dark-mid: #16161c;
+      --bg-dark-bottom: #09090b;
+      --card-bg: rgba(22, 22, 28, 0.75);
+      --card-border: rgba(212, 175, 55, 0.3);
+      --card-border-glow: rgba(212, 175, 55, 0.6);
+      
+      --text-main: #FFFFFF;
+      --text-muted: #D1D5DB;
+      --text-gold: #F4E297;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #060608;
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 50% 100%, rgba(184, 134, 11, 0.1) 0%, transparent 60%),
+        linear-gradient(to bottom, #0a0a0e, #050507);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 12px;
+      overflow-x: hidden;
+    }
+
+    /* Outer Wrapper for responsive smartphone container on Desktop */
+    .card-device-frame {
+      width: 100%;
+      max-width: 440px;
+      min-height: 780px;
+      position: relative;
+      background: #121217;
+      border-radius: 28px;
+      box-shadow: 
+        0 25px 60px -15px rgba(0, 0, 0, 0.95),
+        0 0 0 1px rgba(212, 175, 55, 0.35),
+        0 0 35px rgba(212, 175, 55, 0.12);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      isolation: isolate;
+    }
+
+    /* Top Golden Metallic Bar */
+    .golden-crown-bar {
+      height: 7px;
+      width: 100%;
+      background: var(--gold-gradient);
+      box-shadow: 0 2px 10px rgba(212, 175, 55, 0.5);
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Pattern Background (Interlocking circles matching luxury reference) */
+    .pattern-bg {
+      position: absolute;
+      inset: 0;
+      opacity: 0.12;
+      background-image: radial-gradient(circle, #d4af37 1.2px, transparent 1.2px), 
+                        radial-gradient(circle, #d4af37 1.2px, transparent 1.2px);
+      background-size: 32px 32px;
+      background-position: 0 0, 16px 16px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .pattern-overlay-svg {
+      position: absolute;
+      inset: 0;
+      opacity: 0.08;
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg stroke='%23d4af37' stroke-width='1.2'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3Ccircle cx='0' cy='30' r='20'/%3E%3Ccircle cx='60' cy='30' r='20'/%3E%3Ccircle cx='30' cy='0' r='20'/%3E%3Ccircle cx='30' cy='60' r='20'/%3E%3Ccircle cx='0' cy='0' r='20'/%3E%3Ccircle cx='60' cy='0' r='20'/%3E%3Ccircle cx='0' cy='60' r='20'/%3E%3Ccircle cx='60' cy='60' r='20'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Top Section with Brand & Hero */
+    .card-header {
+      position: relative;
+      z-index: 2;
+      padding: 24px 20px 14px;
+      text-align: center;
+      background: linear-gradient(180deg, rgba(14, 14, 18, 0.95) 0%, rgba(20, 20, 26, 0.8) 100%);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    }
+
+    .card-header::after {
+      content: '';
+      position: absolute;
+      bottom: -9px;
+      left: 50%;
+      transform: translateX(-50%) rotate(45deg);
+      width: 16px;
+      height: 16px;
+      background: #14141a;
+      border-right: 1px solid rgba(212, 175, 55, 0.3);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+      z-index: 3;
+    }
+
+    /* Brand Logo Area */
+    .brand-logo-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 8px;
+    }
+
+    .brand-logo-img {
+      max-width: 250px;
+      height: auto;
+      max-height: 100px;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 12px rgba(212, 175, 55, 0.35));
+      transition: transform 0.3s ease;
+    }
+
+    .brand-logo-img:hover {
+      transform: scale(1.03);
+    }
+
+    .brand-title {
+      font-family: 'Cinzel', serif;
+      font-size: 19px;
+      font-weight: 700;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      background: var(--gold-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-top: 6px;
+      margin-bottom: 2px;
+      text-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
+    }
+
+    .brand-subtitle-line {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 2px;
+      margin-bottom: 8px;
+    }
+
+    .brand-subtitle-line .line {
+      height: 1px;
+      width: 32px;
+      background: var(--gold-gradient);
+      opacity: 0.7;
+    }
+
+    .brand-subtitle {
+      font-family: 'Cinzel', serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: #E6CA65;
+    }
+
+    /* Specialties & Flags Badge */
+    .specialty-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 20px;
+      background: rgba(212, 175, 55, 0.08);
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      margin-top: 4px;
+      backdrop-filter: blur(8px);
+    }
+
+    .specialty-text {
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      color: #F4E297;
+      text-transform: uppercase;
+    }
+
+    .flag-group {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .flag-icon {
+      width: 18px;
+      height: 12px;
+      border-radius: 2px;
+      object-fit: cover;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    }
+
+    /* Grid Area */
+    .card-body {
+      position: relative;
+      z-index: 2;
+      flex: 1;
+      padding: 26px 18px 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      background: linear-gradient(180deg, rgba(22, 22, 28, 0.6) 0%, rgba(14, 14, 18, 0.85) 100%);
+    }
+
+    /* 3x3 Icons Grid matching design */
+    .buttons-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px 12px;
+      justify-items: center;
+      margin-bottom: 16px;
+    }
+
+    /* Individual Button Item */
+    .action-btn-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      width: 100%;
+      cursor: pointer;
+      group: true;
+      transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .action-btn-item:hover, .action-btn-item:active {
+      transform: translateY(-4px) scale(1.04);
+    }
+
+    /* Round Icon Button */
+    .icon-circle {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #2a2a34 0%, #15151a 70%, #0c0c0e 100%);
+      border: 1.8px solid #D4AF37;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-shadow: 
+        0 6px 16px rgba(0, 0, 0, 0.6),
+        inset 0 1px 1px rgba(255, 255, 255, 0.2),
+        0 0 14px rgba(212, 175, 55, 0.25);
+      transition: all 0.3s ease;
+      overflow: hidden;
+    }
+
+    .icon-circle::before {
+      content: '';
+      position: absolute;
+      inset: -50%;
+      background: conic-gradient(from 0deg, transparent, rgba(255, 240, 178, 0.3), transparent 60%);
+      animation: rotateGlow 6s linear infinite;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .action-btn-item:hover .icon-circle::before {
+      opacity: 1;
+    }
+
+    .icon-circle::after {
+      content: '';
+      position: absolute;
+      inset: 2px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #202028 0%, #101014 100%);
+      z-index: 1;
+    }
+
+    .action-btn-item:hover .icon-circle {
+      border-color: #FFF0B2;
+      box-shadow: 
+        0 8px 22px rgba(212, 175, 55, 0.45),
+        0 0 20px rgba(212, 175, 55, 0.6),
+        inset 0 0 8px rgba(212, 175, 55, 0.3);
+    }
+
+    /* SVG Icon Styling with Gold Stroke */
+    .icon-svg {
+      position: relative;
+      z-index: 2;
+      width: 28px;
+      height: 28px;
+      color: #E6CA65;
+      stroke: #E6CA65;
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8));
+      transition: all 0.25s ease;
+    }
+
+    .action-btn-item:hover .icon-svg {
+      color: #FFFFFF;
+      stroke: #FFFFFF;
+      filter: drop-shadow(0 0 8px #FFD700);
+      transform: scale(1.1);
+    }
+
+    /* Button Label Text */
+    .btn-label {
+      margin-top: 7px;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #FFFFFF;
+      text-align: center;
+      letter-spacing: 0.3px;
+      line-height: 1.2;
+      transition: color 0.25s ease;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+    }
+
+    .action-btn-item:hover .btn-label {
+      color: #F4E297;
+      text-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
+    }
+
+    /* Quick Action VIP Utility Bar (vCard + Share) */
+    .vip-utility-bar {
+      display: flex;
+      gap: 10px;
+      margin-top: 6px;
+      margin-bottom: 8px;
+    }
+
+    .vip-button {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 10px 14px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(184, 134, 11, 0.08) 100%);
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      color: #F4E297;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.4);
+    }
+
+    .vip-button:hover, .vip-button:active {
+      background: linear-gradient(135deg, #D4AF37 0%, #B8860B 100%);
+      color: #0c0c0e;
+      border-color: #FFF0B2;
+      box-shadow: 0 0 18px rgba(212, 175, 55, 0.5);
+      transform: translateY(-2px);
+    }
+
+    .vip-button:hover svg {
+      stroke: #0c0c0e;
+    }
+
+    /* Bottom Interactive Callout Bar (Like reference "Clique nos ícones para interagir") */
+    .bottom-interactive-banner {
+      position: relative;
+      z-index: 3;
+      background: #000000;
+      border-top: 1px solid rgba(212, 175, 55, 0.3);
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .interactive-hand-icon {
+      width: 26px;
+      height: 26px;
+      animation: tapPulse 1.8s infinite ease-in-out;
+      color: #D4AF37;
+      stroke: #D4AF37;
+    }
+
+    .interactive-text {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13.5px;
+      font-weight: 700;
+      letter-spacing: 0.6px;
+      color: #FFFFFF;
+    }
+
+    /* Floating WhatsApp Quick Pill */
+    .whatsapp-featured-badge {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      background: #25D366;
+      color: #FFFFFF;
+      font-size: 8px;
+      font-weight: 800;
+      padding: 2px 6px;
+      border-radius: 10px;
+      z-index: 5;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+      letter-spacing: 0.5px;
+      animation: pulseGreen 2s infinite;
+    }
+
+    /* QR Code Modal */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      padding: 20px;
+    }
+
+    .modal-backdrop.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    .modal-card {
+      background: #14141a;
+      border: 1px solid var(--gold-400);
+      border-radius: 20px;
+      padding: 24px;
+      max-width: 320px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(212, 175, 55, 0.3);
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 12px;
+      right: 14px;
+      background: none;
+      border: none;
+      color: #999;
+      font-size: 22px;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .modal-close:hover {
+      color: var(--gold-300);
+    }
+
+    .qr-container {
+      background: #FFFFFF;
+      padding: 14px;
+      border-radius: 12px;
+      display: inline-block;
+      margin: 14px 0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    .toast-message {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: #1a1a24;
+      border: 1px solid var(--gold-400);
+      color: #F4E297;
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: 600;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.8);
+      z-index: 1000;
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .toast-message.show {
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* Animations */
+    @keyframes tapPulse {
+      0%, 100% { transform: scale(1) translateY(0); }
+      50% { transform: scale(1.15) translateY(-2px); }
+    }
+
+    @keyframes rotateGlow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes pulseGreen {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.08); opacity: 0.9; }
+    }
+
+    /* Responsiveness for desktop & smaller screens */
+    @media (max-width: 440px) {
+      body {
+        padding: 0;
+        background: #09090c;
+      }
+      .card-device-frame {
+        min-height: 100vh;
+        border-radius: 0;
+        box-shadow: none;
+        border: none;
+      }
+      .golden-crown-bar {
+        height: 6px;
+      }
+      .icon-circle {
+        width: 58px;
+        height: 58px;
+      }
+      .icon-svg {
+        width: 25px;
+        height: 25px;
+      }
+      .btn-label {
+        font-size: 11px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Main Card Container -->
+  <main class="card-device-frame" id="virtual-card">
+    
+    <!-- Top Gold Metallic Border -->
+    <div class="golden-crown-bar"></div>
+
+    <!-- Geometric Patterns -->
+    <div class="pattern-bg"></div>
+    <div class="pattern-overlay-svg"></div>
+
+    <!-- Header / Brand Section -->
+    <header class="card-header">
+      <div class="brand-logo-container">
+        <!-- Monogram Gold -->
+        <div class="monogram-wrapper" style="margin-bottom: 8px;">
+          <img src="assets/monogram_gold.png" alt="MD Monograma" style="height: 68px; width: auto; object-fit: contain; filter: drop-shadow(0 4px 10px rgba(212, 175, 55, 0.4));">
+        </div>
+        
+        <h1 class="brand-title">MARCUS DAMASCENO</h1>
+        <div class="brand-subtitle-line">
+          <span class="line"></span>
+          <span class="brand-subtitle">ADVOCACIA</span>
+          <span class="line"></span>
+        </div>
+
+        <!-- Specialty with Country Flags -->
+        <div class="specialty-badge">
+          <div class="flag-group">
+            <!-- Brazil SVG Flag -->
+            <svg class="flag-icon" viewBox="0 0 720 504" xmlns="http://www.w3.org/2000/svg">
+              <rect width="720" height="504" fill="#009c3b"/>
+              <polygon points="360,42 678,252 360,462 42,252" fill="#ffdf00"/>
+              <circle cx="360" cy="252" r="126" fill="#002776"/>
+              <path d="M234,252 a126,126 0 0,0 252,0 a126,120 0 0,1 -252,0" fill="#ffffff" opacity="0.9"/>
+            </svg>
+            <!-- Portugal SVG Flag -->
+            <svg class="flag-icon" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+              <rect width="240" height="400" fill="#046A38"/>
+              <rect x="240" width="360" height="400" fill="#DA291C"/>
+              <circle cx="240" cy="200" r="60" fill="#FFC72C"/>
+              <circle cx="240" cy="200" r="45" fill="#DA291C"/>
+              <rect x="220" y="175" width="40" height="50" fill="#FFFFFF"/>
+            </svg>
+          </div>
+          <span class="specialty-text">Revalidação de Diploma Médico • Europa</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Interactive Body: 9 Icons Grid -->
+    <section class="card-body">
+      
+      <div class="buttons-grid">
+        
+        <!-- 1. Telefone Fixo -->
+        <a href="tel:+351219596998" class="action-btn-item" id="btn-fixo" title="Ligar para Telefone Fixo">
+          <div class="icon-circle">
+            <i data-lucide="phone-call" class="icon-svg"></i>
+          </div>
+          <span class="btn-label">Telefone Fixo</span>
+        </a>
+
+        <!-- 2. WhatsApp (Com Destaque) -->
+        <a href="https://wa.me/351964103031?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20a%20revalida%C3%A7%C3%A3o%20do%20meu%20diploma%20m%C3%A9dico%20em%20Portugal." 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="action-btn-item" 
+           id="btn-whatsapp" 
+           title="Conversar no WhatsApp">
+          <div class="icon-circle" style="border-color: #F3E5AB;">
+            <span class="whatsapp-featured-badge">ONLINE</span>
+            <i data-lucide="message-circle" class="icon-svg" style="color: #6EE7B7; stroke: #34D399;"></i>
+          </div>
+          <span class="btn-label">WhatsApp</span>
+        </a>
+
+        <!-- 3. Celular -->
+        <a href="tel:+351964103031" class="action-btn-item" id="btn-celular" title="Ligar para Celular">
+          <div class="icon-circle">
+            <i data-lucide="smartphone" class="icon-svg"></i>
+          </div>
+          <span class="btn-label">Celular</span>
+        </a>
+
+        <!-- 4. E-mail -->
+        <a href="mailto:contato@marcusdamascenoadvocacia.com" class="action-btn-item" id="btn-email" title="Enviar E-mail">
+          <div class="icon-circle">
+            <i data-lucide="mail" class="icon-svg"></i>
+          </div>
+          <span class="btn-label">E-mail</span>
+        </a>
+
+        <!-- 5. Nosso Site -->
+        <a href="https://marcusdamascenoadvocacia.com/" target="_blank" rel="noopener noreferrer" class="action-btn-item" id="btn-site" title="Acessar Nosso Site">
+          <div class="icon-circle">
+            <i data-lucide="globe" class="icon-svg"></i>
+          </div>
+          <span class="btn-label">Nosso Site</span>
+        </a>
+
+        <!-- 6. Endereço / Localização -->
+        <a href="https://www.google.com/maps/place/Marcus+Damasceno+Advocacia/@38.867311,-9.3669688,11z/data=!4m10!1m2!2m1!1smarcus+damasceno+advocacia!3m6!1s0xd192f532950a9af:0x826acc5b1b0dc65d!8m2!3d38.867311!4d-9.0620982!15sChptYXJjdXMgZGFtYXNjZW5vIGFkdm9jYWNpYVocIhptYXJjdXMgZGFtYXNjZW5vIGFkdm9jYWNpYZIBDmxlZ2FsX3NlcnZpY2VzmgEkQ2hkRFNVaE5NRzluUzBWSlEwRm5TVU5XWjB4aGJEWlJSUkFC4AEA!16s%2Fg%2F11q4d1y32w?entry=ttu&g_ep=EgoyMDI0MDgyOC4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" class="action-btn-item" id="btn-endereco" title="Abrir no Google Maps">
+          <div class="icon-circle">
+            <i data-lucide="map-pin" class="icon-svg"></i>
+          </div>
+          <span class="btn-label">Endereço</span>
+        </a>
+
+        <!-- 7. Depoimentos de Clientes -->
+        <a href="https://marcusdamascenoadvocacia.com/depoimentos/" target="_blank" rel="noopener noreferrer" class="action-btn-item" id="btn-depoimentos" title="Ver Depoimentos">
+          <div class="icon-circle">
+            <i data-lucide="award" class="icon-svg"></i>
+          </div>
+          <span class="btn-label">Depoimentos</span>
+        </a>
+
+        <!-- 8. Instagram -->
+        <a href="https://www.instagram.com/marcusdamasceno_advogado/" target="_blank" rel="noopener noreferrer" class="action-btn-item" id="btn-instagram" title="Seguir no Instagram">
+          <div class="icon-circle">
+            <i data-lucide="instagram" class="icon-svg"></i>
+          </div>
+          <span class="btn-label">Instagram</span>
+        </a>
+
+        <!-- 9. Facebook -->
+        <a href="https://www.facebook.com/marcusdamasceno" target="_blank" rel="noopener noreferrer" class="action-btn-item" id="btn-facebook" title="Curtir no Facebook">
+          <div class="icon-circle">
+            <i data-lucide="facebook" class="icon-svg"></i>
+          </div>
+          <span class="btn-label">Facebook</span>
+        </a>
+
+      </div>
+
+      <!-- Quick Utility: Salvar Contato (vCard) & Compartilhar -->
+      <div class="vip-utility-bar">
+        <button class="vip-button" id="btn-save-vcf" onclick="downloadVCard()">
+          <i data-lucide="user-plus" style="width: 15px; height: 15px;"></i>
+          <span>Salvar Contato</span>
+        </button>
+        <button class="vip-button" id="btn-share-card" onclick="shareCard()">
+          <i data-lucide="share-2" style="width: 15px; height: 15px;"></i>
+          <span>Compartilhar</span>
+        </button>
+      </div>
+
+    </section>
+
+    <!-- Bottom Interactive Banner -->
+    <footer class="bottom-interactive-banner">
+      <svg class="interactive-hand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0"/>
+        <path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v2"/>
+        <path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8"/>
+        <path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/>
+      </svg>
+      <span class="interactive-text">Clique nos ícones para interagir</span>
+    </footer>
+
+  </main>
+
+  <!-- Modal QR Code & Share -->
+  <div class="modal-backdrop" id="share-modal" onclick="closeShareModal(event)">
+    <div class="modal-card" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeShareModal()">&times;</button>
+      <h3 style="font-family: 'Cinzel', serif; color: var(--gold-300); font-size: 16px; margin-bottom: 4px;">Compartilhar Cartão</h3>
+      <p style="font-size: 12px; color: #aaa;">Escaneie o QR Code ou copie o link</p>
+      
+      <div class="qr-container">
+        <img id="qr-image" src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://marcusdamascenoadvocacia.com/&color=121217" alt="QR Code Marcus Damasceno Advocacia" style="width: 170px; height: 170px; display: block;">
+      </div>
+
+      <button class="vip-button" style="width: 100%; margin-top: 8px;" onclick="copyCardLink()">
+        <i data-lucide="copy" style="width: 14px; height: 14px;"></i>
+        <span>Copiar Link do Cartão</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Toast Feedback -->
+  <div class="toast-message" id="toast">
+    <i data-lucide="check-circle" style="width: 16px; height: 16px; color: #34D399;"></i>
+    <span id="toast-text">Link copiado com sucesso!</span>
+  </div>
+
+  <!-- Initialize Lucide Icons & Javascript -->
+  <script>
+    lucide.createIcons();
+
+    // vCard Generator & Downloader (.vcf)
+    function downloadVCard() {
+      const vcardData = `BEGIN:VCARD
+VERSION:3.0
+N:Damasceno;Marcus;;Dr.;
+FN:Marcus Damasceno | Advocacia
+ORG:Marcus Damasceno Advocacia
+TITLE:Advogado Especialista em Revalidação de Diploma Médico em Portugal e Europa
+TEL;TYPE=WORK,VOICE:+351219596998
+TEL;TYPE=CELL,VOICE,WHATSAPP:+351964103031
+EMAIL;TYPE=WORK,INTERNET:contato@marcusdamascenoadvocacia.com
+URL:https://marcusdamascenoadvocacia.com/
+ADR;TYPE=WORK:;;Portugal;;;;
+NOTE:Revalidação de Diploma Médico • Europa. Instagram: @marcusdamasceno_advogado
+END:VCARD`;
+
+      const blob = new Blob([vcardData], { type: 'text/vcard;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', 'Marcus_Damasceno_Advocacia.vcf');
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+      
+      showToast('Contato pronto para salvar!');
+    }
+
+    // Share API or Modal
+    function shareCard() {
+      if (navigator.share) {
+        navigator.share({
+          title: 'Marcus Damasceno Advocacia | Cartão Virtual',
+          text: 'Cartão de visita digital de Marcus Damasceno Advocacia - Revalidação de Diploma Médico em Portugal e Europa.',
+          url: window.location.href
+        }).catch(() => {
+          openShareModal();
+        });
+      } else {
+        openShareModal();
+      }
+    }
+
+    function openShareModal() {
+      const modal = document.getElementById('share-modal');
+      const qrImg = document.getElementById('qr-image');
+      qrImg.src = 'https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=' + encodeURIComponent(window.location.href);
+      modal.classList.add('active');
+    }
+
+    function closeShareModal(event) {
+      document.getElementById('share-modal').classList.remove('active');
+    }
+
+    function copyCardLink() {
+      navigator.clipboard.writeText(window.location.href).then(() => {
+        showToast('Link copiado para a área de transferência!');
+        closeShareModal();
+      }).catch(() => {
+        showToast('Link copiado!');
+      });
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      const text = document.getElementById('toast-text');
+      text.innerText = message;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
+    }
+  </script>
+</body>
+</html>
