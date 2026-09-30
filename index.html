@@ -26,51 +26,32 @@
 
   <style>
     :root {
-      /* Palette Clean Luxury */
-      --gold-primary: #C5A059;
-      --gold-light: #E5C378;
-      --gold-dark: #9A7B38;
-      --gold-gradient: linear-gradient(135deg, #DFBE74 0%, #C5A059 50%, #9A7B38 100%);
-      --gold-soft-bg: rgba(197, 160, 89, 0.08);
-      --gold-border: rgba(197, 160, 89, 0.35);
+      /* Palette Luxury Black & Noble Gold */
+      --gold-primary: #D4AF37;
+      --gold-light: #F5E096;
+      --gold-dark: #AA7A1E;
+      --gold-gradient: linear-gradient(135deg, #FDE68A 0%, #D4AF37 50%, #926C15 100%);
+      --gold-soft-bg: rgba(212, 175, 55, 0.12);
+      --gold-border: rgba(212, 175, 55, 0.3);
+      --gold-glow: rgba(212, 175, 55, 0.25);
       
-      /* Light Clean Mode (Default) */
-      --bg-page: #F3F5F9;
-      --bg-card: #FFFFFF;
-      --bg-item: #F8FAFC;
-      --bg-item-hover: #F1F5F9;
-      --border-item: #E2E8F0;
-      --border-item-hover: #C5A059;
+      /* Dark Theme (Fundo Preto Nobre) */
+      --bg-page: #060608;
+      --bg-card: #0F0F14;
+      --bg-item: #16161F;
+      --bg-item-hover: #1E1E2C;
+      --border-item: rgba(212, 175, 55, 0.2);
+      --border-item-hover: #D4AF37;
       
-      --text-title: #0F172A;
-      --text-sub: #475569;
-      --text-muted: #64748B;
-      --text-gold: #9A7B38;
-      
-      --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.04);
-      --shadow-md: 0 10px 30px -5px rgba(15, 23, 42, 0.08);
-      --shadow-lg: 0 20px 50px -10px rgba(15, 23, 42, 0.12);
-      --shadow-gold: 0 8px 25px rgba(197, 160, 89, 0.25);
-    }
-
-    /* Dark Mode Theme */
-    body.theme-dark {
-      --bg-page: #0B0B0E;
-      --bg-card: #131318;
-      --bg-item: #1A1A22;
-      --bg-item-hover: #22222E;
-      --border-item: rgba(255, 255, 255, 0.08);
-      --border-item-hover: #C5A059;
-      
-      --text-title: #F8FAFC;
-      --text-sub: #CBD5E1;
+      --text-title: #FFFFFF;
+      --text-sub: #E2E8F0;
       --text-muted: #94A3B8;
-      --text-gold: #E5C378;
+      --text-gold: #F5E096;
       
-      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
-      --shadow-md: 0 10px 30px -5px rgba(0, 0, 0, 0.6);
-      --shadow-lg: 0 20px 50px -10px rgba(0, 0, 0, 0.8);
-      --shadow-gold: 0 8px 30px rgba(197, 160, 89, 0.3);
+      --shadow-card: 0 25px 60px -15px rgba(0, 0, 0, 0.95), 0 0 0 1px rgba(212, 175, 55, 0.25);
+      --shadow-item: 0 4px 14px rgba(0, 0, 0, 0.4);
+      --shadow-item-hover: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 15px rgba(212, 175, 55, 0.2);
+      --shadow-gold: 0 8px 25px rgba(212, 175, 55, 0.35);
     }
 
     * {
@@ -84,30 +65,41 @@
       font-family: 'Plus Jakarta Sans', sans-serif;
       background-color: var(--bg-page);
       background-image: 
-        radial-gradient(at 50% 0%, rgba(197, 160, 89, 0.12) 0px, transparent 60%),
-        radial-gradient(at 100% 100%, rgba(15, 23, 42, 0.05) 0px, transparent 50%);
+        radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.18) 0%, transparent 60%),
+        radial-gradient(circle at 50% 100%, rgba(212, 175, 55, 0.08) 0%, transparent 70%),
+        linear-gradient(to bottom, #09090D, #050507);
       color: var(--text-title);
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
       padding: 16px 12px;
-      transition: background-color 0.3s ease, color 0.3s ease;
+      overflow-x: hidden;
     }
 
-    /* Clean Card Container */
+    /* Black Luxury Card Container */
     .card-container {
       width: 100%;
       max-width: 440px;
       background: var(--bg-card);
       border-radius: 28px;
-      box-shadow: var(--shadow-lg);
+      box-shadow: var(--shadow-card);
       border: 1px solid var(--border-item);
       overflow: hidden;
       position: relative;
       display: flex;
       flex-direction: column;
-      transition: all 0.3s ease;
+      isolation: isolate;
+    }
+
+    /* Subtle Geometric Background Overlay */
+    .bg-pattern-overlay {
+      position: absolute;
+      inset: 0;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 0L40 20L20 40L0 20z' fill='none' stroke='%23D4AF37' stroke-width='1'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
     }
 
     /* Top Accent Stripe */
@@ -115,20 +107,25 @@
       height: 6px;
       width: 100%;
       background: var(--gold-gradient);
+      box-shadow: 0 2px 10px rgba(212, 175, 55, 0.5);
+      position: relative;
+      z-index: 10;
     }
 
-    /* Header Controls (Theme switch & share) */
+    /* Header Controls (Status & Share) */
     .header-controls {
+      position: relative;
+      z-index: 2;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 14px 20px 0;
+      padding: 16px 20px 0;
     }
 
-    .theme-toggle-btn, .mini-icon-btn {
+    .mini-icon-btn {
       background: var(--bg-item);
       border: 1px solid var(--border-item);
-      color: var(--text-muted);
+      color: var(--text-gold);
       width: 38px;
       height: 38px;
       border-radius: 50%;
@@ -139,28 +136,25 @@
       transition: all 0.2s ease;
     }
 
-    .theme-toggle-btn:hover, .mini-icon-btn:hover {
+    .mini-icon-btn:hover {
       border-color: var(--gold-primary);
-      color: var(--gold-primary);
-      transform: scale(1.05);
+      color: #FFFFFF;
+      transform: scale(1.06);
+      box-shadow: 0 0 12px var(--gold-glow);
     }
 
     .brand-status-pill {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 4px 10px;
-      background: rgba(16, 185, 129, 0.1);
-      border: 1px solid rgba(16, 185, 129, 0.25);
+      padding: 5px 12px;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.35);
       border-radius: 20px;
       font-size: 11px;
       font-weight: 700;
-      color: #059669;
-    }
-
-    body.theme-dark .brand-status-pill {
       color: #34D399;
-      background: rgba(16, 185, 129, 0.15);
+      letter-spacing: 0.3px;
     }
 
     .status-dot {
@@ -174,7 +168,9 @@
 
     /* Logo & Identity Header */
     .card-brand-section {
-      padding: 12px 24px 18px;
+      position: relative;
+      z-index: 2;
+      padding: 10px 24px 18px;
       text-align: center;
       display: flex;
       flex-direction: column;
@@ -183,21 +179,23 @@
 
     .brand-logo-frame {
       width: 100%;
-      max-width: 320px;
-      padding: 8px;
-      border-radius: 16px;
-      background: var(--bg-card);
+      max-width: 330px;
+      padding: 10px 14px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(212, 175, 55, 0.18);
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
+      backdrop-filter: blur(6px);
     }
 
     .brand-logo-img {
       width: 100%;
       max-height: 85px;
       object-fit: contain;
-      filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.06));
+      filter: drop-shadow(0 3px 10px rgba(212, 175, 55, 0.3));
       transition: transform 0.3s ease;
     }
 
@@ -207,25 +205,24 @@
 
     .brand-name {
       font-family: 'Cinzel', serif;
-      font-size: 20px;
+      font-size: 21px;
       font-weight: 700;
-      letter-spacing: 2px;
-      color: var(--text-title);
+      letter-spacing: 2.5px;
+      background: var(--gold-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
       margin-top: 4px;
       margin-bottom: 2px;
+      text-shadow: 0 2px 12px rgba(212, 175, 55, 0.2);
     }
 
     .brand-role {
-      font-size: 12px;
+      font-size: 11.5px;
       font-weight: 700;
-      letter-spacing: 3px;
+      letter-spacing: 4px;
       text-transform: uppercase;
-      color: var(--gold-dark);
-      margin-bottom: 10px;
-    }
-
-    body.theme-dark .brand-role {
-      color: var(--gold-light);
+      color: var(--text-gold);
+      margin-bottom: 12px;
     }
 
     .specialty-tag {
@@ -236,19 +233,23 @@
       border-radius: 30px;
       background: var(--gold-soft-bg);
       border: 1px solid var(--gold-border);
-      font-size: 11.5px;
+      font-size: 11px;
       font-weight: 600;
-      color: var(--text-gold);
+      color: #FDE68A;
       letter-spacing: 0.4px;
+      backdrop-filter: blur(8px);
     }
 
     .specialty-tag svg {
       width: 14px;
       height: 14px;
+      color: var(--gold-primary);
     }
 
-    /* Main Action: Featured WhatsApp CTA */
+    /* Main WhatsApp CTA (Destaque Principal) */
     .featured-cta-container {
+      position: relative;
+      z-index: 2;
       padding: 0 20px 14px;
     }
 
@@ -258,19 +259,19 @@
       justify-content: space-between;
       width: 100%;
       padding: 14px 18px;
-      background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+      background: linear-gradient(135deg, #10B981 0%, #059669 100%);
       border-radius: 18px;
       color: #FFFFFF;
       text-decoration: none;
-      box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
-      border: none;
+      box-shadow: 0 8px 24px rgba(16, 185, 129, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.2);
       cursor: pointer;
       transition: all 0.25s ease;
     }
 
     .btn-whatsapp-featured:hover, .btn-whatsapp-featured:active {
       transform: translateY(-2px);
-      box-shadow: 0 12px 28px rgba(37, 211, 102, 0.45);
+      box-shadow: 0 12px 30px rgba(16, 185, 129, 0.5);
     }
 
     .btn-whatsapp-featured .left-side {
@@ -297,12 +298,14 @@
 
     .cta-subtitle {
       font-size: 11px;
-      opacity: 0.9;
+      opacity: 0.92;
       font-weight: 400;
     }
 
-    /* Action Grid / List of Buttons */
+    /* Action Buttons Area */
     .card-buttons-area {
+      position: relative;
+      z-index: 2;
       padding: 0 20px 18px;
       display: flex;
       flex-direction: column;
@@ -316,7 +319,7 @@
       gap: 10px;
     }
 
-    /* 3-Column Social / Media Rows */
+    /* 3-Column Social Grid */
     .actions-grid-3col {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -335,7 +338,7 @@
       text-decoration: none;
       color: var(--text-title);
       transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
-      box-shadow: var(--shadow-sm);
+      box-shadow: var(--shadow-item);
       cursor: pointer;
     }
 
@@ -343,7 +346,7 @@
       background: var(--bg-item-hover);
       border-color: var(--border-item-hover);
       transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
+      box-shadow: var(--shadow-item-hover);
     }
 
     .action-icon-circle {
@@ -353,21 +356,18 @@
       border-radius: 12px;
       background: var(--gold-soft-bg);
       border: 1px solid var(--gold-border);
-      color: var(--gold-dark);
+      color: var(--gold-primary);
       display: flex;
       align-items: center;
       justify-content: center;
       transition: all 0.2s ease;
     }
 
-    body.theme-dark .action-icon-circle {
-      color: var(--gold-light);
-    }
-
     .action-card:hover .action-icon-circle {
       background: var(--gold-primary);
-      color: #FFFFFF;
-      border-color: var(--gold-primary);
+      color: #0F0F14;
+      border-color: #FDE68A;
+      box-shadow: 0 0 14px var(--gold-glow);
       transform: scale(1.08);
     }
 
@@ -406,7 +406,7 @@
       text-decoration: none;
       color: var(--text-title);
       transition: all 0.22s ease;
-      box-shadow: var(--shadow-sm);
+      box-shadow: var(--shadow-item);
       cursor: pointer;
       text-align: center;
     }
@@ -415,7 +415,7 @@
       background: var(--bg-item-hover);
       border-color: var(--border-item-hover);
       transform: translateY(-3px);
-      box-shadow: var(--shadow-md);
+      box-shadow: var(--shadow-item-hover);
     }
 
     .action-tile-compact .action-icon-circle {
@@ -441,7 +441,7 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      padding: 11px 16px;
+      padding: 12px 16px;
       border-radius: 14px;
       font-size: 12px;
       font-weight: 700;
@@ -456,7 +456,7 @@
 
     .btn-utility.primary {
       background: var(--gold-gradient);
-      color: #0F172A;
+      color: #0F0F14;
       border-color: var(--gold-primary);
       font-weight: 800;
       box-shadow: var(--shadow-gold);
@@ -464,23 +464,25 @@
 
     .btn-utility:hover, .btn-utility:active {
       transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
+      box-shadow: var(--shadow-item-hover);
     }
 
     .btn-utility.primary:hover {
-      box-shadow: 0 10px 28px rgba(197, 160, 89, 0.4);
+      box-shadow: 0 10px 28px rgba(212, 175, 55, 0.5);
     }
 
     /* Footer Clean */
     .card-footer {
+      position: relative;
+      z-index: 2;
       padding: 14px 20px;
-      background: var(--bg-item);
+      background: #09090C;
       border-top: 1px solid var(--border-item);
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
-      font-size: 11.5px;
+      font-size: 12px;
       font-weight: 600;
       color: var(--text-muted);
     }
@@ -496,7 +498,7 @@
     .modal-backdrop {
       position: fixed;
       inset: 0;
-      background: rgba(15, 23, 42, 0.6);
+      background: rgba(0, 0, 0, 0.85);
       backdrop-filter: blur(8px);
       display: none;
       align-items: center;
@@ -513,14 +515,14 @@
     }
 
     .modal-card {
-      background: var(--bg-card);
+      background: #14141C;
       border: 1px solid var(--gold-border);
       border-radius: 24px;
       padding: 26px;
       max-width: 320px;
       width: 100%;
       text-align: center;
-      box-shadow: var(--shadow-lg);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 30px rgba(212, 175, 55, 0.2);
       position: relative;
     }
 
@@ -546,7 +548,7 @@
       border-radius: 16px;
       display: inline-block;
       margin: 16px 0;
-      box-shadow: var(--shadow-md);
+      box-shadow: var(--shadow-item);
       border: 1px solid #E2E8F0;
     }
 
@@ -556,13 +558,14 @@
       bottom: 24px;
       left: 50%;
       transform: translateX(-50%) translateY(100px);
-      background: #0F172A;
-      color: #FFFFFF;
+      background: #181822;
+      border: 1px solid var(--gold-primary);
+      color: #FDE68A;
       padding: 10px 20px;
       border-radius: 30px;
       font-size: 13px;
       font-weight: 600;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
       z-index: 1000;
       transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       pointer-events: none;
@@ -589,6 +592,7 @@
     @media (max-width: 440px) {
       body {
         padding: 0;
+        background: #09090C;
       }
       .card-container {
         border-radius: 0;
@@ -601,29 +605,26 @@
 </head>
 <body>
 
-  <!-- Main Card Device Wrapper -->
+  <!-- Main Black Luxury Card Container -->
   <main class="card-container" id="virtual-card">
     
     <!-- Top Gold Accent Bar -->
     <div class="top-gold-bar"></div>
 
-    <!-- Top Bar Controls (Status & Theme Switch) -->
+    <!-- Geometric Overlay Pattern -->
+    <div class="bg-pattern-overlay"></div>
+
+    <!-- Top Bar Controls (Status & Share) -->
     <div class="header-controls">
       <div class="brand-status-pill">
         <span class="status-dot"></span>
         <span>Atendimento Ativo</span>
       </div>
 
-      <div style="display: flex; gap: 8px;">
-        <!-- Theme Toggle (Clean Light / Dark Gold) -->
-        <button class="theme-toggle-btn" onclick="toggleTheme()" title="Alternar Modo Claro / Escuro">
-          <i data-lucide="moon" id="theme-icon" style="width: 17px; height: 17px;"></i>
-        </button>
-        <!-- Share Modal Trigger -->
-        <button class="mini-icon-btn" onclick="shareCard()" title="Compartilhar Cartão">
-          <i data-lucide="share-2" style="width: 17px; height: 17px;"></i>
-        </button>
-      </div>
+      <!-- Share Trigger -->
+      <button class="mini-icon-btn" onclick="shareCard()" title="Compartilhar Cartão">
+        <i data-lucide="share-2" style="width: 17px; height: 17px;"></i>
+      </button>
     </div>
 
     <!-- Brand Header -->
@@ -803,11 +804,11 @@
   <div class="modal-backdrop" id="share-modal" onclick="closeShareModal(event)">
     <div class="modal-card" onclick="event.stopPropagation()">
       <button class="modal-close" onclick="closeShareModal()">&times;</button>
-      <h3 style="font-family: 'Cinzel', serif; font-size: 17px; margin-bottom: 4px; color: var(--text-title);">Compartilhar Cartão</h3>
+      <h3 style="font-family: 'Cinzel', serif; font-size: 17px; margin-bottom: 4px; color: var(--gold-light);">Compartilhar Cartão</h3>
       <p style="font-size: 12px; color: var(--text-muted);">Escaneie com a câmera ou copie o link</p>
       
       <div class="qr-box">
-        <img id="qr-image" src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://marcusdamascenoadvocacia.com/&color=0F172A" alt="QR Code Marcus Damasceno Advocacia" style="width: 160px; height: 160px; display: block;">
+        <img id="qr-image" src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://marcusdamascenoadvocacia.com/&color=09090C" alt="QR Code Marcus Damasceno Advocacia" style="width: 160px; height: 160px; display: block;">
       </div>
 
       <button class="btn-utility primary" style="width: 100%;" onclick="copyCardLink()">
@@ -827,17 +828,6 @@
   <script>
     // Initialize Icons
     lucide.createIcons();
-
-    // Theme Toggle Functionality
-    function toggleTheme() {
-      const body = document.body;
-      const themeIcon = document.getElementById('theme-icon');
-      body.classList.toggle('theme-dark');
-      
-      const isDark = body.classList.contains('theme-dark');
-      themeIcon.setAttribute('data-lucide', isDark ? 'sun' : 'moon');
-      lucide.createIcons();
-    }
 
     // vCard Generator (.vcf)
     function downloadVCard() {
@@ -884,7 +874,7 @@ END:VCARD`;
     function openShareModal() {
       const modal = document.getElementById('share-modal');
       const qrImg = document.getElementById('qr-image');
-      qrImg.src = 'https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=' + encodeURIComponent(window.location.href) + '&color=0F172A';
+      qrImg.src = 'https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=' + encodeURIComponent(window.location.href) + '&color=09090C';
       modal.classList.add('active');
     }
 
