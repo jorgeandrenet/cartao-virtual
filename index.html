@@ -167,41 +167,81 @@
     }
 
     /* Logo & Identity Header */
+    /* Logo & Identity Header - 100% Clean & Transparent */
     .card-brand-section {
       position: relative;
       z-index: 2;
-      padding: 18px 20px 20px;
-      text-align: center;
+      padding: 18px 20px 14px;
       display: flex;
-      flex-direction: column;
+      justify-content: center;
       align-items: center;
     }
 
-    .brand-logo-frame {
+    .brand-exact-layout {
       width: 100%;
-      max-width: 380px;
-      padding: 10px 12px;
+      max-width: 390px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 12px;
       background: transparent;
       border: none;
       box-shadow: none;
+      padding: 0;
+    }
+
+    .brand-monogram-col {
+      flex-shrink: 0;
       display: flex;
       align-items: center;
-      justify-content: center;
     }
 
-    .brand-logo-img {
-      width: 100%;
-      max-height: 110px;
+    .brand-md-img {
+      height: 70px;
+      width: auto;
       object-fit: contain;
       display: block;
-      filter: none;
       border: none;
+      filter: none;
       box-shadow: none;
-      transition: transform 0.3s ease;
     }
 
-    .brand-logo-img:hover {
-      transform: scale(1.02);
+    .brand-info-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: flex-end;
+      padding-bottom: 2px;
+    }
+
+    .brand-flags-stacked {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      margin-bottom: 6px;
+      align-items: flex-end;
+    }
+
+    .flag-svg {
+      width: 34px;
+      height: 22px;
+      border-radius: 2px;
+      display: block;
+      box-shadow: none;
+      border: none;
+    }
+
+    .brand-white-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 800;
+      color: #FFFFFF;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      white-space: nowrap;
+      text-align: right;
+      line-height: 1;
     }
 
     .brand-name {
@@ -628,10 +668,35 @@
       </button>
     </div>
 
-    <!-- Brand Header: Logo Exata com Fonte Branca e Fundo Transparente -->
+    <!-- Brand Header: Composição Exata em Vetor com Fundo Transparente e Fonte Branca -->
     <header class="card-brand-section">
-      <div class="brand-logo-frame">
-        <img src="assets/logo_exata_fonte_branca.png" alt="Marcus Damasceno Advocacia" class="brand-logo-img">
+      <div class="brand-exact-layout">
+        <!-- Monograma Dourado [MD] -->
+        <div class="brand-monogram-col">
+          <img src="assets/monogram_gold.png" alt="MD Monograma" class="brand-md-img">
+        </div>
+
+        <!-- Conteúdo: Bandeiras no topo à direita e Texto em Branco embaixo -->
+        <div class="brand-info-col">
+          <div class="brand-flags-stacked">
+            <!-- Bandeira Brasil -->
+            <svg class="flag-svg" viewBox="0 0 720 504" xmlns="http://www.w3.org/2000/svg">
+              <rect width="720" height="504" fill="#009c3b"/>
+              <polygon points="360,42 678,252 360,462 42,252" fill="#ffdf00"/>
+              <circle cx="360" cy="252" r="126" fill="#002776"/>
+              <path d="M234,252 a126,126 0 0,0 252,0 a126,120 0 0,1 -252,0" fill="#ffffff"/>
+            </svg>
+            <!-- Bandeira Portugal -->
+            <svg class="flag-svg" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+              <rect width="240" height="400" fill="#046A38"/>
+              <rect x="240" width="360" height="400" fill="#DA291C"/>
+              <circle cx="240" cy="200" r="60" fill="#FFC72C"/>
+              <circle cx="240" cy="200" r="45" fill="#DA291C"/>
+              <rect x="220" y="175" width="40" height="50" fill="#FFFFFF"/>
+            </svg>
+          </div>
+          <span class="brand-white-title">REVALIDAÇÃO DIPLOMA MÉDICO • EUROPA</span>
+        </div>
       </div>
     </header>
 
